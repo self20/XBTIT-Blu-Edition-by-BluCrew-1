@@ -951,7 +951,6 @@ INSERT INTO `{$db_prefix}hacks` (`id`, `title`, `version`, `author`, `added`, `f
 (65, 'fmhack_lock_comments', '1.0 (FM)', 'DiemThuy', UNIX_TIMESTAMP(), '', 'no'),
 (66, 'fmhack_account_parked', '1.0 (FM)', 'Petr1fied', UNIX_TIMESTAMP(), '', 'no'),
 (67, 'fmhack_low_ratio_ban_system', '1.0 (FM)', 'DiemThuy', UNIX_TIMESTAMP(), '', 'no'),
-(68, 'fmhack_automatic_album_cover_and_picture_grabber', '1.0 (FM)', 'cooly', UNIX_TIMESTAMP(), '', 'no'),
 (69, 'fmhack_hide_online_status', '1.1 (FM)', 'DiemThuy & Petr1fied', UNIX_TIMESTAMP(), '', 'no'),
 (70, 'fmhack_upload_multiplier', '1.1 (FM)', 'DiemThuy & Petr1fied', UNIX_TIMESTAMP(), '', 'no'),
 (71, 'fmhack_torrentBar', '1.0 (FM)', 'confe', UNIX_TIMESTAMP(), '', 'no'),
@@ -1799,7 +1798,6 @@ INSERT INTO `{$db_prefix}settings` (`key`, `value`) VALUES
 ('warn_bantype', 'no_action_at_max'),
 ('warn_booted_days', '0'),
 ('fmhack_low_ratio_ban_system', 'disabled'),
-('fmhack_automatic_album_cover_and_picture_grabber', 'disabled'),
 ('fmhack_hide_online_status', 'disabled'),
 ('fmhack_upload_multiplier', 'disabled'),
 ('fmhack_torrentBar', 'disabled'),
@@ -2598,4 +2596,3 @@ CREATE TABLE `xbt_users` (
   `torrents_limit` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`uid`)
 ); -- TABLEOPT --
-

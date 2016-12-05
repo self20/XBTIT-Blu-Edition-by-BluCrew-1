@@ -1338,7 +1338,6 @@ if(isset($_FILES["torrent"]))
             $uploadtpl->set("LEVEL_SC", false, true);
         }
 
-        $uploadtpl->set("aacapg_enabled", (($btit_settings["fmhack_automatic_album_cover_and_picture_grabber"]=="enabled")?true:false), true);
         $uploadtpl->set("nfo_enabled", (($btit_settings["fmhack_NFO_uploader_-_viewer"]=="enabled")?true:false), true);
         $uploadtpl->set("nar_enabled", (($btit_settings["fmhack_torrent_nuked_and_requested"]=="enabled")?true:false), true);
         $uploadtpl->set("upcheck_enabled", (($btit_settings["fmhack_auto_duplicate_torrent_checker"]=="enabled")?true:false), true);
