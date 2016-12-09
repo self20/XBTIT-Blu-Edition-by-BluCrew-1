@@ -498,8 +498,7 @@ if($count > 0)
                     $query1_join.="LEFT JOIN `{$TABLE_PREFIX}peers` `p` ON (`p`.`infohash`=`f`.`info_hash` AND `p`.`pid`='".$CURUSER["pid"]."') ";
                 }
             }
-            if($btit_settings["fmhack_grab_images_from_theTVDB"] == "enabled")
-            $query1_select .= "`f`.`tvdb_id`,";
+            //TVDB query
             if($btit_settings["fmhack_magnet_links"] == "enabled")
             $query1_select.="`f`.`magnet`,";
             $query = "SELECT ".$query1_select." `f`.`info_hash` `hash`, $tseeds `seeds`, $tleechs `leechers`, $tcompletes `finished`,  `f`.`dlbytes` `dwned` , IFNULL(`f`.`filename`,'') `filename`, `f`.`url`, `f`.`info`, `f`.`anonymous`, `f`.`image` `imgup`, `f`.`imdb` , `f`.`release_group`,`f`.`speed`, UNIX_TIMESTAMP(`f`.`data`) `added`, `c`.`image`, `c`.`name` `cname`, `f`.`category` `catid`, `f`.`size`, `f`.`external`, `f`.`uploader` `upname`, `u`.`username` `uploader`, `prefixcolor`, `suffixcolor` FROM $ttables LEFT JOIN `{$TABLE_PREFIX}categories` `c` ON `c`.`id` = `f`.`category` LEFT JOIN `{$TABLE_PREFIX}users` `u` ON `u`.`id` = `f`.`uploader` LEFT JOIN `{$TABLE_PREFIX}users_level` `ul` ON `u`.`id_level`=`ul`.`id` $query1_join $where $query1_and $query1_group ORDER BY ".
@@ -1464,8 +1463,7 @@ if($count > 0)
                             $req1_join.="LEFT JOIN `{$TABLE_PREFIX}peers` `p` ON (`p`.`infohash`=`f`.`info_hash` AND `p`.`pid`='".$CURUSER["pid"]."') ";
                         }
                     }
-                    if($btit_settings["fmhack_grab_images_from_theTVDB"] == "enabled")
-                    $req1_select .= "`f`.`tvdb_id`,";
+                    //TVDB query
                     $query = "SELECT ".$req1_select.
                     " `f`.`size`, `r`.`info_hash`, `u1`.`id` `recommender_id`, `ul1`.`prefixcolor` `recommender_prefixcolor`, `r`.`user_name` `recommender_username`, `ul1`.`suffixcolor` `recommender_suffixcolor`, ".(($XBTT_USE)?
                     "`x`.`seeders` `seeds`, `x`.`leechers`, `f`.`finished`+ifnull(`x`.`completed`,0) `finished`, ":"`f`.`seeds`, `f`.`leechers`, `f`.`finished` `finished`, f.speed, ").

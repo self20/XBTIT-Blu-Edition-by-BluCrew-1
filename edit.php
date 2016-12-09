@@ -199,19 +199,9 @@ if((isset($_POST["comment"])) && (isset($_POST["name"])))
          $team = AddSlashes($_POST["team"]);
          if($btit_settings["fmhack_getIMDB_in_torrent_details"] == "enabled")
          $imdb = AddSlashes($_POST["imdb"]);
-         $series_id=false;
-         $release_group= intval(0+$_POST['release_group']);
-         if($btit_settings["fmhack_grab_images_from_theTVDB"]=="enabled")
-         {
-            $tvdb_number=(isset($_POST["tvdb_number"]) && !empty($_POST["tvdb_number"])) ? (int)0+$_POST["tvdb_number"] : 0;
-            $series_id=false;
-            $api_key = "84198CDB1D6D23DE";
-            $SeasonAndEpisode=array();
-            $theTVDBExtra=array();
-            $selected_category=intval(0 + $_POST["category"]);
-            $tvdb_catlist=(isset($btit_settings["tvdb_cats"]) && !empty($btit_settings["tvdb_cats"]))?explode(",", $btit_settings["tvdb_cats"]):array(0 => "all");
 
-         }
+         $release_group= intval(0+$_POST['release_group']);
+
          write_log("Modified torrent $fname ($torhash)", "modify");
          if($btit_settings["fmhack_torrent_moderation"] == "enabled")
          {
@@ -697,10 +687,7 @@ if((isset($_POST["comment"])) && (isset($_POST["name"])))
                            }
                         }
                         $query2_update = ", `anonymous`=".(($_POST["anonymous"] == "true")?"'true'":"'false'");
-                        if($btit_settings["fmhack_grab_images_from_theTVDB"]=="enabled" && $tvdb_number>=0)
-                        {
-                           $query2_update .= ", `tvdb_id`='".$tvdb_number."'".((isset($tvdb_extra) && !empty($tvdb_extra))?", `tvdb_extra`='".$tvdb_extra."'":"");
-                        }
+                        //TVDB query
                         if($btit_settings["fmhack_getIMDB_in_torrent_details"] == "enabled")
                         $query2_update .= ", `imdb`='".$imdb."'";
                         if($btit_settings["fmhack_sticky_torrent"] == "enabled")
@@ -894,8 +881,7 @@ if((isset($_POST["comment"])) && (isset($_POST["name"])))
                      $query1_select .= "`f`.`language`,";
                      if($btit_settings["fmhack_torrent_details_media_player"] == "enabled")
                      $query1_select .= "`f`.`mplayer`,";
-                     if($btit_settings["fmhack_grab_images_from_theTVDB"] == "enabled")
-                     $query1_select .= "`f`.`tvdb_id`,`f`.`tvdb_extra`,";
+                     //TVDB query
                      $query = "SELECT ".$query1_select." `f`.`info_hash`, `f`.`filename`, `f`.`url`, UNIX_TIMESTAMP(`f`.`data`) `data`,`f`.`size`,`f`.`release_group` ,`f`.`comment`, `f`.`category` `cat_name`, $tseeds, $tleechs, $tcompletes, `f`.`speed`, `f`.`uploader` FROM $ttables WHERE `f`.`info_hash` ='".
                      AddSlashes($_GET["info_hash"])."'";
                      $res = do_sqlquery($query, true);
@@ -914,11 +900,8 @@ if((isset($_POST["comment"])) && (isset($_POST["name"])))
                         if($btit_settings["fmhack_torrent_moderation"] == "enabled")
                         $moder_status = getmoderstatusbyhash(AddSlashes($_GET["info_hash"]));
                         $torrenttpl = new bTemplate();
-                        $torrenttpl->set("tvdb_enabled", (($btit_settings["fmhack_grab_images_from_theTVDB"] == "enabled")?true:false), true);
-                        if($btit_settings["fmhack_grab_images_from_theTVDB"] == "enabled")
-                        {
-                           $torrenttpl->set("tvdb_id", $results["tvdb_id"]);
-                        }
+                        //TVDB enabled
+                        //TVDB ID
                         $torrenttpl->set("bump_enabled", (($btit_settings["fmhack_bump_torrents"] == "enabled" && $CURUSER["bump_torrents"] == "yes")?true:false), true);
                         $torrenttpl->set("media_enabled", (($btit_settings["fmhack_torrent_details_media_player"] == "enabled")?true:false), true);
                         $torrenttpl->set("language", $language);

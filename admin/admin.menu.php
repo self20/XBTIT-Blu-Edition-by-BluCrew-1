@@ -765,13 +765,6 @@ if($btit_settings["fmhack_torrent_activity_colouring"]=="enabled")
     $alphabetize[$i]=$unsorted[$i]["description"];
     $i++;
 }
-if($btit_settings["fmhack_grab_images_from_theTVDB"]=="enabled")
-{
-    $unsorted[$i]["url"]="index.php?page=admin&amp;user=".$CURUSER["uid"]."&amp;code=".$CURUSER["random"]."&amp;do=tvdb";
-    $unsorted[$i]["description"]=$language["ACP_TVDB_SETTINGS"];
-    $alphabetize[$i]=$unsorted[$i]["description"];
-    $i++;
-}
 if($btit_settings["fmhack_ask_for_reseed"]=="enabled")
 {
     $unsorted[$i]["url"]="index.php?page=admin&amp;user=".$CURUSER["uid"]."&amp;code=".$CURUSER["random"]."&amp;do=reseed";

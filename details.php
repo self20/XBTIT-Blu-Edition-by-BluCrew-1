@@ -196,8 +196,6 @@ if($btit_settings["fmhack_torrent_view_count"]=="enabled")
    $query1_select.=" `f`.`viewcount`,";
 if($btit_settings["fmhack_archive_torrents"]=="enabled")
    $query1_select.=" `f`.`archive`,";
-if($btit_settings["fmhack_grab_images_from_theTVDB"] == "enabled")
-   $query1_select.="`f`.`tvdb_id`, `f`.`tvdb_extra`,";
 if($btit_settings["fmhack_magnet_links"] == "enabled")
    $query1_select.="`f`.`magnet`,";
 $res = get_result("SELECT ".$query1_select." `f`.`info_hash`, `f`.`filename`, `f`.`url`, UNIX_TIMESTAMP(`f`.`data`) `data`, `f`.`size`, `f`.`comment`, `f`.`uploader`,`f`.`category`, `c`.`name` `cat_name`, $tseeds, $tleechs, $tcompletes, `f`.`speed`, `f`.`external`, `f`.`announce_url`, UNIX_TIMESTAMP(`f`.`lastupdate`) `lastupdate`, UNIX_TIMESTAMP(`f`.`lastsuccess`) `lastsuccess`, `f`.`anonymous`, `u`.`username` FROM $ttables LEFT JOIN `{$TABLE_PREFIX}categories` `c` ON `c`.`id`=`f`.`category` LEFT JOIN `{$TABLE_PREFIX}users` `u` ON `u`.`id`=`f`.`uploader` ".$query1_join." WHERE ".((isset($id) && !empty($id))?"`f`.`info_hash`='".sql_esc($id)."'":((isset($torrent_id) && !empty($torrent_id))?"`f`.`id`='".$torrent_id."'":"")),true, $btit_settings['cache_duration']);

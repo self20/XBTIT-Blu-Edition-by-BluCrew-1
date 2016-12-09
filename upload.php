@@ -320,14 +320,7 @@ if(isset($_FILES["torrent"]))
             $imdb = 0;
         }
 
-        if($btit_settings["fmhack_grab_images_from_theTVDB"] == "enabled")
-        {
-            $tvdb_number = (isset($_POST["tvdb_number"]) && !empty($_POST["tvdb_number"])) ? (int)0+$_POST["tvdb_number"]: 0;
-        }
-        else
-        {
-            $tvdb_number = 0;
-        }
+        //TVDB
 
         if(isset($hash) && $hash)
         $url = $TORRENTSDIR."/".$hash.".btf";
@@ -1005,11 +998,7 @@ if(isset($_FILES["torrent"]))
                 $query1_insert_key .=", `archive`";
                 $query1_insert_value .=", ".$archive;
             }
-            if($btit_settings["fmhack_grab_images_from_theTVDB"]=="enabled")
-            {
-                $query1_insert_key .=", `tvdb_id`";
-                $query1_insert_value .=", '".$tvdb_number."'";
-            }
+            //TVDB
             if($btit_settings["fmhack_magnet_links"]=="enabled" && !$DHT_PRIVATE && !$PRIVATE_ANNOUNCE)
             {
                 $magnetLink="";
@@ -1501,7 +1490,7 @@ if(isset($_FILES["torrent"]))
             }
             // <-- Image Upload
             $uploadtpl->set("imdb_enabled", (($btit_settings["fmhack_getIMDB_in_torrent_details"]=="enabled")?true:false), true);
-            $uploadtpl->set("tvdb_enabled", (($btit_settings["fmhack_grab_images_from_theTVDB"]=="enabled")?true:false), true);
+            //TVDB enabled
             $tplfile="upload";
 
             break;

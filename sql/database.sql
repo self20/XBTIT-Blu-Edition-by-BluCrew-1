@@ -1034,7 +1034,6 @@ INSERT INTO `{$db_prefix}hacks` (`id`, `title`, `version`, `author`, `added`, `f
 (149, 'fmhack_poll_from_integrated_forum', '1.0 (FM)', 'Petr1fied', UNIX_TIMESTAMP(), '', 'no'),
 (150, 'fmhack_torrent_activity_colouring', '1.0 (FM)', 'Petr1fied', UNIX_TIMESTAMP(), '', 'no');
 INSERT INTO `{$db_prefix}hacks` (`id`, `title`, `version`, `author`, `added`, `folder`, `prerequisite`) VALUES
-(151, 'fmhack_grab_images_from_theTVDB', '1.0 (FM)', 'Petr1fied', UNIX_TIMESTAMP(), '', 'no'),
 (152, 'fmhack_advanced_prune_users_and_torrents', '1.0 (FM)', 'Petr1fied', UNIX_TIMESTAMP(), '', 'no'),
 (153, 'fmhack_previous_usernames', '1.0 (FM)', 'Petr1fied', UNIX_TIMESTAMP(), '', 'no'),
 (154, 'fmhack_download_requires_introduction', '1.0 (FM)', 'Petr1fied', UNIX_TIMESTAMP(), '', 'no'),
@@ -1999,7 +1998,6 @@ INSERT INTO `{$db_prefix}settings` (`key`, `value`) VALUES
 ('seeding_prefixcolor', ''),
 ('seeding_suffixcolor', ''),
 ('hide_down_img', 'no'),
-('fmhack_grab_images_from_theTVDB', 'disabled'),
 ('tvdb_cats', ''),
 ('tvdb_img_min_rating', '6.66'),
 ('tvdb_image_min_voters', '5'),

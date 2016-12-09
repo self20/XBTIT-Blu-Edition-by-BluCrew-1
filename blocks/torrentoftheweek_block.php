@@ -32,26 +32,11 @@ if(isset($btit_settings["tow_this_week"]) && !empty($btit_settings["tow_this_wee
                     }
                     elseif($towImageValue==2)
                     {
-                        if($btit_settings["fmhack_getIMDB_in_torrent_details"] == "enabled" && !empty($row["imdb"]) && @file_exists($THIS_BASEPATH."/imdb/images/".$row["imdb"].".jpg"))
-                            $torrimage = "<img src='imdb/images/".$row["imdb"].".jpg' border='0' width='150' height='200' />";
+                        //IMDB Image
                     }
                     elseif($towImageValue==3)
                     {
-                        if($btit_settings["fmhack_grab_images_from_theTVDB"] == "enabled" && !empty($row["tvdb_id"]))
-                        {
-                            $selectedPics=array();
-                            if(file_exists($THIS_BASEPATH."/thetvdb/".$row["tvdb_id"]."/poster"))
-                            {
-                                foreach(glob($THIS_BASEPATH."/thetvdb/".$row["tvdb_id"]."/poster/*.*") as $filename)
-                                    $selectedPics[]=str_replace($THIS_BASEPATH."/", "", $filename);
-                            }
-                            if(count($selectedPics)>0)
-                            {
-                                $randomkey=array_rand($selectedPics, 1);
-                                if(file_exists($THIS_BASEPATH."/".$selectedPics[$randomkey]))
-                                    $torrimage = "<img src='".$selectedPics[$randomkey]."' border='0' width='150' height='200' />";
-                            }
-                        }
+                        //TVDB image
                     }
                 }
             }
